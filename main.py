@@ -92,8 +92,8 @@ def mostrar_gantt(res, ancho_bloque=20):
         print("Cola:   " + "".join(f"{q:<4}" for _, q in bloque))
         print()
     print("Segmentos:  " + "  ".join(f"[{seg.inicio}-{seg.fin}] {seg.nombre or 'ocioso'}"
-                                      + (f"(Q{seg.nivel + 1})" if seg.nivel is not None else "")
-                                      for seg in res.segmentos))
+                                    + (f"(Q{seg.nivel + 1})" if seg.nivel is not None else "")
+                                    for seg in res.segmentos))
 
 
 def mostrar_calculos(res):

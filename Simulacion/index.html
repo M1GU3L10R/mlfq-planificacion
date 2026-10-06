@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación MLFQ</title>
+<link rel="stylesheet" href="css/estilos.css">
+
+</head>
+<body>
+<main>
+<h1>Simulación de MLFQ (Multi-Level Feedback Queue)</h1>
+
+<details class="card" id="setup" open>
+<summary>1. Datos de entrada</summary>
+<div class="row"><label>Procesos (1 a 5) <select id="np"></select></label>
+<label>Colas (1 a 4) <select id="nq"></select></label>
+<label>Boost cada S = <input type="number" id="S" min="1" value="20"></label></div>
+<div id="procs"></div>
+<div class="row" id="quants"></div>
+<div class="row"><button class="p" id="go">Simular</button><button id="ex">Cargar ejemplo del grupo</button></div>
+<div id="err" role="alert"></div>
+</details>
+
+<section id="sim" hidden>
+<div class="card">
+<div class="ctl">
+<button id="rst" title="Volver a t = 0">Reiniciar</button>
+<button id="prev" title="Paso atrás">&#9664; Atrás</button>
+<button id="play" class="p">Reproducir</button>
+<button id="next" title="Paso adelante">Adelante &#9654;</button>
+<input type="range" id="scrub" min="0" value="0" aria-label="Tiempo">
+<label>Velocidad <input type="range" id="spd" min="1" max="10" value="5"></label>
+</div>
+<div class="row"><b id="tt"></b><span id="bt" style="flex:1;min-width:200px"></span></div>
+<svg id="stage" role="img" aria-label="Colas, CPU y procesos"></svg>
+</div>
+<div class="card"><h2>Diagrama de Gantt (hasta el tiempo actual)</h2><div class="gantt" id="gantt"></div></div>
+<div class="card"><h2>Qué está pasando</h2><div id="log"></div></div>
+<div class="card"><h2>Resultados</h2><table id="tbl"></table><p id="sum" class="m"></p></div>
+</section>
+</main>
+
+<!-- Orden importante: config -> motor -> dibujo -> control -> entrada -->
+<script src="js/config.js"></script>
+<script src="js/motor.js"></script>
+<script src="js/dibujo.js"></script>
+<script src="js/control.js"></script>
+<script src="js/entrada.js"></script>
+</body>
+</html>

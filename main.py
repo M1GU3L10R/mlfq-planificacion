@@ -37,19 +37,20 @@ def pedir_entero(mensaje, minimo, maximo=None):
 
 
 def pedir_datos():
-    print("\n--- Datos de los procesos ---")
-    n = pedir_entero(f"Número de procesos (1 a {MAX_PROCESOS}): ", 1, MAX_PROCESOS)
+    print("\n--- Ingrese los siguientesdatos de los procesos ---\n")
+    n = pedir_entero(f"# Número de procesos (1 a {MAX_PROCESOS}): ", 1, MAX_PROCESOS)
     procesos = []
     for i in range(1, n + 1):
-        llegada = pedir_entero(f"  P{i} - tiempo de llegada: ", 0)
-        rafaga = pedir_entero(f"  P{i} - ráfaga ({RAFAGA_MIN} a {RAFAGA_MAX}): ", RAFAGA_MIN, RAFAGA_MAX)
+        llegada = pedir_entero(f"  › P{i} - tiempo de llegada: ", 0)
+        rafaga = pedir_entero(f"     » P{i} - ráfaga ({RAFAGA_MIN} a {RAFAGA_MAX}): ", RAFAGA_MIN, RAFAGA_MAX)
         procesos.append(Proceso(f"P{i}", llegada, rafaga))
 
-    print("\n--- Configuración de MLFQ ---")
-    n_colas = pedir_entero("Cantidad de colas (1 a 5): ", 1, 5)
-    quantums = [pedir_entero(f"  Quantum de Q{i} (Q1 es la de mayor prioridad): ", 1)
+    print("_" * 70)
+    print("\n--- Configuración de MLFQ ---\n")
+    n_colas = pedir_entero("# Cantidad de colas (1 a 5): ", 1, 5)
+    quantums = [pedir_entero(f"  › Quantum de Q{i} (Q1 es la de mayor prioridad): ", 1)
                 for i in range(1, n_colas + 1)]
-    s = pedir_entero("Tiempo S (cada cuánto todos vuelven a Q1): ", 1)
+    s = pedir_entero("\nTiempo S (cada cuánto todos vuelven a Q1): ", 1)
     return procesos, quantums, s
 
 
@@ -131,26 +132,19 @@ def mostrar_calculos(res):
 # Programa principal
 # --------------------------------------------------------------------------- #
 def main():
-    print("=" * 70)
-    print("SIMULADOR DE PLANIFICACIÓN MLFQ (Multi-Level Feedback Queue)")
-    print("=" * 70)
-    while True:
-        usar = input("¿Usar el ejemplo del grupo? (s = ejemplo / n = ingresar datos): ").strip().lower()
-        if usar in ("s", "n"):
-            break
-        print("  Responde s o n.")
+    print("\t","=" * 70)
+    print("\t ‖    SIMULADOR DE PLANIFICACIÓN MLFQ (Multi-Level Feedback Queue)    ‖")
+    print("\t ‖","-" * 66, "‖")
+    print("\t ‖          Bienvenido al simulador de planificación MLFQ.            ‖")         
+    print("\t","=" * 70)
 
-    if usar == "s":
-        procesos, quantums, s = EJEMPLO_PROCESOS, EJEMPLO_QUANTUMS, EJEMPLO_S
-    else:
-        procesos, quantums, s = pedir_datos()
+    procesos, quantums, s = pedir_datos()
 
     res = simular(procesos, quantums, s)
     mostrar_datos(procesos, quantums, s)
     mostrar_eventos(res)
     mostrar_gantt(res)
     mostrar_calculos(res)
-
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,250 @@
+/* estilos.css - Aspecto de la simulación (claro y oscuro automático) */
+:root{
+    --bg:#f5f6f8;
+    --card:#fff;
+    --ink:#1d2733;
+    --mut:#66727f;
+    --line:#d9dee4;
+    --red:#d93f3f;
+    --q0:#9fe1cb;
+    --q1:#fac775;
+    --q2:#f5c4b3;
+    --q3:#d3d1c7
+}
+
+@media(prefers-color-scheme:dark){
+    :root{--bg:#14181d;
+        --card:#1d232a;
+        --ink:#e8ecf0;
+        --mut:#9aa6b2;
+        --line:#323b45;
+        --q0:#1c5a49;
+        --q1:#6b4a14;
+        --q2:#74382a;
+        --q3:#44443f}
+    }
+
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font:14px/1.45 system-ui,"Segoe UI",sans-serif
+}
+
+main{
+    max-width:980px;
+    margin:0 auto;
+    padding:16px
+}
+
+h1{
+    font-size:21px;
+    margin:4px 0 12px
+}
+
+h2{
+    font-size:15px;
+    margin:0 0 8px
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;padding:14px;
+    margin-bottom:12px
+}
+
+details>summary{
+    cursor:pointer;
+    font-weight:600
+}
+
+.row{display:
+    flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin:8px 0
+}
+
+label{
+    color:var(--mut)
+}
+
+input,select,button{
+    font:inherit;
+    color:var(--ink);
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:7px;padding:5px 8px
+}
+
+input[type=number]{
+    width:62px
+}
+
+button{
+    cursor:pointer
+}
+
+button:hover{
+    border-color:var(--mut)
+}
+
+button:focus-visible,input:focus-visible,select:focus-visible{
+    outline:2px solid #2a78d6;
+    outline-offset:1px
+}
+
+button.p{
+    background:#2a78d6;
+    color:#fff;
+    border-color:#2a78d6
+}
+
+#err{
+    color:var(--red);
+    min-height:20px;
+    margin:4px 0 0
+}
+
+svg{
+    width:100%;
+    height:auto;
+    display:block
+}
+
+.lane{
+    stroke:var(--line)}.l0{fill:var(--q0)}.l1{fill:var(--q1)}.l2{fill:var(--q2)}.l3{fill:var(--q3)}.lw{fill:var(--bg)}
+.lane{fill-opacity:.55
+}
+
+svg text{
+    fill:var(--ink);
+    font-size:12px}svg .m{fill:var(--mut)
+    }
+
+.chip{
+    transition:transform .5s ease
+}
+
+.chip text{
+    fill:#fff;font-weight:600
+}
+
+@media(prefers-reduced-motion:reduce){
+    .chip{transition:none}
+}
+
+.ctl{display:
+    flex;
+    flex-wrap:wrap;
+    gap:8px;align-items:center
+}
+
+#scrub{
+    flex:1;min-width:140px
+    ;padding:0
+}
+
+.bar{
+    height:6px;
+    background:var(--line);
+    border-radius:3px;
+    overflow:hidden;
+    margin-top:4px}.bar i{display:block;
+    height:100%;background:var(--red)
+}
+
+.gantt{
+    display:flex;
+    flex-wrap:wrap;
+    gap:2px
+}
+
+.c{
+    width:28px;text-align:center;
+    color:#fff;border-radius:4px;
+    padding:2px 0;
+    font-size:11px;line-height:1.25
+}
+
+.c b{
+    display:block;font-weight:600
+}
+.c i{
+    display:block;font-style:normal;
+    opacity:.85;
+    font-size:10px
+}
+.c u{
+    display:block;
+    text-decoration:none;
+    color:var(--mut);
+    background:var(--card);
+    font-size:10px
+}
+.c.bo{
+    box-shadow:-2px 0 0 var(--red)
+}
+.idle{
+    background:var(--line)!important;color:var(--mut)
+}
+
+#log{
+    max-height:200px;overflow:auto;font-size:13px
+}
+#log div{
+    padding:2px 6px;border-left:3px solid var(--line)
+}
+#log .now{
+    background:var(--bg)
+}
+
+.k-boost{
+    border-color:var(--red)!important
+}
+
+.k-fin{
+    border-color:#1baf7a!important
+}
+.k-baja{
+    border-color:#eb9f27!important
+}
+.k-exp{
+    border-color:#8a63d2!important
+}
+table{
+    border-collapse:collapse;
+    width:100%
+}
+th,td{
+    padding:5px 7px;
+    border-bottom:1px solid var(--line);
+    text-align:left}th{color:var(--mut);
+    font-weight:600
+    }
+
+td.n{
+    font-variant-numeric:tabular-nums
+}
+.w{
+    display:inline-block;
+    height:8px;
+    background:#eb6834;
+    border-radius:2px;
+    vertical-align:middle;
+    margin-left:5px
+}
+.avg td{
+    font-weight:600
+}
+.dot{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    margin-right:5px
+}

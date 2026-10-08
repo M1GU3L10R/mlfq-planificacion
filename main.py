@@ -14,6 +14,46 @@ colorama.just_fix_windows_console()
 from mlfq import (Proceso, simular, MAX_PROCESOS, RAFAGA_MIN, RAFAGA_MAX)
 
 # --------------------------------------------------------------------------- #
+# Visualizacion de resultados en consola, con colores y formato centrado.
+# --------------------------------------------------------------------------- #
+RESET, NEGRITA = "\033[0m", "\033[1m"
+CYAN, VERDE, AMARILLO, ROJO, GRIS = "\033[36m", "\033[32m", "\033[33m", "\033[31m", "\033[90m"
+
+ANCHO_TOTAL = 70
+
+ESTILOS = [
+    ("llega",       CYAN,     "→"),
+    ("toma la CPU", VERDE,    "▶"),
+    ("agota",       AMARILLO, "▼"),
+    ("TERMINA",     ROJO,     "■"),
+]
+
+# fondos de color con texto negro, uno por proceso
+FONDOS = ["\033[30;46m", "\033[30;42m", "\033[30;43m", "\033[30;45m", "\033[30;44m", "\033[30;47m"]
+
+def b(texto):
+    """Devuelve el texto en negrita."""
+    return f"{NEGRITA}{texto}{RESET}"
+
+
+def titulo(texto):
+    """Titulo con marco, siempre del ancho exacto."""
+    print("\n" + b("=" * ANCHO_TOTAL))
+    print(b("‖") + b(texto.center(ANCHO_TOTAL - 2)) + b("‖"))
+    print(b("=" * ANCHO_TOTAL) + "\n")
+
+
+def caja(lineas):
+    """Caja con bordes. Las líneas deben ser texto plano (sin códigos de color)."""
+    ancho = max(len(l) for l in lineas)
+    print("  ┌" + "─" * (ancho + 2) + "┐")
+
+    for l in lineas:
+        print(f"  │ {l:<{ancho}} │")
+    print("  └" + "─" * (ancho + 2) + "┘")
+
+
+# --------------------------------------------------------------------------- #
 # Entrada de datos
 # --------------------------------------------------------------------------- #
 def pedir_entero(mensaje, minimo, maximo=None):
@@ -173,46 +213,6 @@ def mostrar_calculos(res):
     mayor = max(res.filas, key=lambda f: f.espera)
     print(f"  {ROJO}Proceso que más espera: {b(mayor.nombre)}{ROJO} ({mayor.espera} unidades){RESET}\n")
     print(b("=" * ANCHO_TOTAL))
-
-
-# --------------------------------------------------------------------------- #
-# Visualizacion de resultados en consola, con colores y formato centrado.
-# --------------------------------------------------------------------------- #
-RESET, NEGRITA = "\033[0m", "\033[1m"
-CYAN, VERDE, AMARILLO, ROJO, GRIS = "\033[36m", "\033[32m", "\033[33m", "\033[31m", "\033[90m"
-
-ANCHO_TOTAL = 70
-
-ESTILOS = [
-    ("llega",       CYAN,     "→"),
-    ("toma la CPU", VERDE,    "▶"),
-    ("agota",       AMARILLO, "▼"),
-    ("TERMINA",     ROJO,     "■"),
-]
-
-# fondos de color con texto negro, uno por proceso
-FONDOS = ["\033[30;46m", "\033[30;42m", "\033[30;43m", "\033[30;45m", "\033[30;44m", "\033[30;47m"]
-
-def b(texto):
-    """Devuelve el texto en negrita."""
-    return f"{NEGRITA}{texto}{RESET}"
-
-
-def titulo(texto):
-    """Titulo con marco, siempre del ancho exacto."""
-    print("\n" + b("=" * ANCHO_TOTAL))
-    print(b("‖") + b(texto.center(ANCHO_TOTAL - 2)) + b("‖"))
-    print(b("=" * ANCHO_TOTAL) + "\n")
-
-
-def caja(lineas):
-    """Caja con bordes. Las líneas deben ser texto plano (sin códigos de color)."""
-    ancho = max(len(l) for l in lineas)
-    print("  ┌" + "─" * (ancho + 2) + "┐")
-
-    for l in lineas:
-        print(f"  │ {l:<{ancho}} │")
-    print("  └" + "─" * (ancho + 2) + "┘")
 
 
 # --------------------------------------------------------------------------- #

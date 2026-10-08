@@ -2,8 +2,7 @@
 mlfq.py - Lógica del algoritmo de planificación MLFQ (Multi-Level Feedback Queue).
 
 Este módulo NO pide datos ni imprime nada: recibe los datos, simula y devuelve un
-resultado. Así la misma lógica se puede usar desde la consola (main.py), desde las
-pruebas (test_mlfq.py) o desde cualquier otra interfaz.
+resultado. Así la misma lógica se puede usar desde la consola (main.py).
 
 Reglas implementadas (las 5 del material de clase, OSTEP):
 1. Si Prioridad(A) > Prioridad(B), corre A.
